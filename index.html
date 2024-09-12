@@ -97,8 +97,8 @@
             padding: 10px;
             background-color: rgba(0, 0, 0, 0.8);
             color: #87CEFA;
-            display: inline-block;
-            margin: 0 auto;
+            max-width: 400px; /* Smaller box for footer */
+            margin: 0 auto; /* Center footer */
         }
         /* CTA styles */
         .cta {
@@ -111,10 +111,6 @@
             color: #87CEFA; /* Light blue color for CTA link */
             text-decoration: none;
             font-weight: bold;
-        }
-        /* Centered content */
-        .centered {
-            text-align: center;
         }
     </style>
 </head>
@@ -129,18 +125,13 @@
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </header>
 
         <section id="home">
-            <h2 class="centered">Cloud Threat Hunting</h2>
-            <p class="centered">Don’t worry about who I am. I’m just here to help.</p>
-        </section>
-
-        <section>
             <div class="service">
                 <h2>Threat Detection</h2>
                 <p>Leverage our advanced threat detection services using AWS CloudTrail and GuardDuty to keep your cloud environment secure. Our solutions provide real-time monitoring and analysis to promptly identify and address potential threats. We utilize state-of-the-art techniques to ensure that your environment is protected against both known and emerging threats.</p>
@@ -161,14 +152,10 @@
                 <p>Identify and address vulnerabilities before they become threats. Our vulnerability management services include comprehensive scanning and risk assessment to protect your cloud infrastructure. We employ advanced tools to detect and analyze vulnerabilities, ensuring that you are protected against potential exploits.</p>
                 <p>Our services also include remediation strategies and follow-up assessments to ensure that vulnerabilities are effectively managed. We work closely with you to prioritize and address the most critical issues, enhancing the overall security of your cloud environment.</p>
             </div>
-            <div class="cta">
-                <h3>Ready to Secure Your Cloud Environment?</h3>
-                <a href="mailto:themaninthecloud@gmail.com">Contact Us Today</a>
-            </div>
         </section>
 
         <section id="contact">
-            <h2 class="centered">Contact</h2>
+            <h2>Contact</h2>
             <form action="https://formspree.io/f/xrbzvgbz" method="POST">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
@@ -179,11 +166,11 @@
                 <button type="submit">Send</button>
             </form>
         </section>
-    </div>
 
-    <footer>
-        <p>&copy; 2024 Welcome To My World</p>
-    </footer>
+        <footer>
+            <p>&copy; 2024 Welcome To My World</p>
+        </footer>
+    </div>
 
     <!-- Matrix effect script -->
     <script>
