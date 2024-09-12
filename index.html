@@ -4,70 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cloud Threat-Hunting Services | Your Company</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap">
-    <style>
-        body {
-            font-family: 'PT Serif', serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        section {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        h1 {
-            font-size: 2em;
-        }
-        h2 {
-            font-size: 1.5em;
-        }
-        h3 {
-            font-size: 1.2em;
-        }
-        .service {
-            margin-bottom: 20px;
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .service h3 {
-            margin-top: 0;
-        }
-        .cta {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .cta a {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            color: #fff;
-            background-color: #333;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .cta a:hover {
-            background-color: #555;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- Linking to external CSS file -->
 </head>
 <body>
+
+    <!-- Matrix background container -->
+    <div class="matrix"></div>
+
     <header>
         <h1>Cloud Threat-Hunting Services</h1>
     </header>
+
     <section>
         <div class="service">
             <h2>Threat Detection</h2>
@@ -85,10 +32,31 @@
             <h2>Vulnerability Management</h2>
             <p>Identify and address vulnerabilities before they become threats. Our vulnerability management services include comprehensive scanning and risk assessment to protect your cloud infrastructure.</p>
         </div>
+
         <div class="cta">
             <h3>Ready to Secure Your Cloud Environment?</h3>
             <a href="mailto:your-email@example.com">Contact Us Today</a>
         </div>
     </section>
+
+    <script>
+        // Matrix effect logic
+        const matrix = document.querySelector('.matrix');
+        const columns = window.innerWidth / 20;
+        for (let i = 0; i < columns; i++) {
+            const column = document.createElement('span');
+            column.style.left = `${i * 20}px`;
+            column.textContent = Math.random().toString(36)[2];
+            column.style.animationDuration = `${Math.random() * 1 + 2}s`;
+            matrix.appendChild(column);
+        }
+        setInterval(() => {
+            const spans = document.querySelectorAll('.matrix span');
+            spans.forEach(span => {
+                span.textContent = Math.random().toString(36)[2];
+            });
+        }, 100);
+    </script>
+
 </body>
 </html>
