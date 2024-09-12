@@ -16,7 +16,6 @@
             position: relative;
             overflow: auto;
         }
-
         /* Matrix effect canvas */
         #matrix {
             position: fixed;
@@ -26,7 +25,6 @@
             height: 100%;
             z-index: -1;
         }
-
         /* Content container */
         .content {
             position: relative;
@@ -34,64 +32,58 @@
             padding: 20px;
             box-sizing: border-box;
         }
-
         /* Header styles */
         header {
             text-align: center;
             padding-bottom: 20px;
         }
-
-        header h1 {
-            color: #87CEFA; /* Light blue color for the header */
+        /* Navigation styles */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
-
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
         /* Section styles */
         section {
             padding: 20px;
             box-sizing: border-box;
             margin-bottom: 20px;
         }
-
-        /* Service box styles */
-        .service {
-            background-color: #333; /* Dark grey background for contrast */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        /* Form styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+        }
+        form label {
+            margin-top: 10px;
+        }
+        form input, form textarea, form button {
+            margin-top: 5px;
+            width: 100%; /* Make inputs and buttons full-width */
+        }
+        /* Article styles */
+        article {
             margin-bottom: 20px;
-            color: #ddd; /* Lighter text color for readability */
+            text-align: left;
         }
-
-        .service h2 {
-            color: #87CEFA; /* Light blue for headers */
-        }
-
-        .service p {
-            color: #ccc; /* Slightly lighter text color */
-        }
-
-        /* CTA styles */
-        .cta {
+        /* Footer styles */
+        footer {
             text-align: center;
-            margin-top: 20px;
-        }
-
-        .cta h3 {
-            color: #87CEFA; /* Light blue color */
-        }
-
-        .cta a {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            color: #fff;
-            background-color: #87CEFA; /* Light blue background */
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .cta a:hover {
-            background-color: #333; /* Dark grey background on hover */
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #87CEFA;
         }
     </style>
 </head>
