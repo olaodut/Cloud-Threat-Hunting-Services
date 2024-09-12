@@ -2,48 +2,41 @@ body {
     font-family: 'PT Serif', serif;
     margin: 0;
     padding: 0;
-    background-color: #333; /* Dark grey background */
-    color: #fff; /* White text color */
+    color: #fff;
+    overflow: hidden;
 }
 
 header {
-    background-color: #222; /* Slightly darker grey */
-    color: #fff;
-    padding: 10px 20px;
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
     text-align: center;
+    color: #fff;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
 }
 
 section {
+    position: relative;
+    z-index: 1;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-h1, h2, h3 {
-    color: #fff; /* White text color */
-}
-
-h1 {
-    font-size: 2em;
-}
-
-h2 {
-    font-size: 1.5em;
-}
-
-h3 {
-    font-size: 1.2em;
-}
-
 .service {
     margin-bottom: 20px;
-    background-color: #444; /* Lighter grey for service boxes */
+    background-color: rgba(255, 255, 255, 0.2);
     padding: 15px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.service h3 {
+.service h2 {
     margin-top: 0;
 }
 
@@ -57,11 +50,11 @@ h3 {
     padding: 10px 20px;
     font-size: 1.2em;
     color: #fff;
-    background-color: #555; /* Medium grey */
+    background-color: #333;
     text-decoration: none;
     border-radius: 5px;
 }
 
 .cta a:hover {
-    background-color: #666; /* Slightly lighter grey on hover */
+    background-color: #555;
 }
