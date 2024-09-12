@@ -6,146 +6,76 @@
     <title>Welcome To My World - Cloud Threat Hunting</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* General styles */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: black;
-            color: white;
-            font-family: 'PT Serif', serif;
-            position: relative;
-            overflow: auto;
-        }
-        /* Matrix effect canvas */
-        #matrix {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        /* Content container */
-        .content {
-            position: relative;
-            z-index: 1;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        /* Header styles */
-        header {
-            text-align: center;
-            padding-bottom: 20px;
-        }
-        /* Navigation styles */
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 15px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        /* Section styles */
-        section {
-            padding: 20px;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-        }
-        /* Form styles */
-        form {
-            display: flex;
-            flex-direction: column;
-            margin: 20px auto;
-            max-width: 600px;
-            text-align: left;
-        }
-        form label {
-            margin-top: 10px;
-        }
-        form input, form textarea, form button {
-            margin-top: 5px;
-            width: 100%; /* Make inputs and buttons full-width */
-        }
-        /* Article styles */
-        article {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        /* Footer styles */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #0A0;
-            color: #0F0;
-        }
-    </style>
 </head>
-    
+<body>
+    <!-- Matrix effect canvas -->
+    <canvas id="matrix"></canvas>
+
     <header>
         <h1>Welcome To My World - Cloud Threat Hunting</h1>
     </header>
-<section>
-    <div class="service">
-        <h2>Threat Detection</h2>
-        <p>Our Threat Detection services leverage the power of AWS CloudTrail and GuardDuty to ensure your cloud environment remains secure. Utilizing AWS's advanced analytics capabilities, we provide continuous monitoring and real-time alerts that help identify suspicious activities and potential threats before they escalate. We use AWS's sophisticated machine learning algorithms to analyze and correlate vast amounts of data, ensuring that even subtle anomalies are detected promptly. By integrating these tools with our expertise in cloud security, we offer a proactive approach to threat detection that keeps your systems safe and resilient.</p>
-        <p>With our customized solutions, you benefit from a seamless integration of threat detection tools with your existing AWS infrastructure. Our team of experts will configure and fine-tune these services to fit your specific needs, providing you with actionable insights and recommendations to strengthen your security posture. By choosing us, you ensure that your threat detection capabilities are optimized to respond to the evolving landscape of cyber threats.</p>
-    </div>
-    <div class="service">
-        <h2>Incident Response</h2>
-        <p>In the event of a security incident, our Incident Response services offer rapid and effective solutions to mitigate damage and restore normal operations. Using AWS Lambda, we automate and streamline response actions to minimize the impact of incidents. Our team will work closely with you to develop and implement incident response plans that align with your business continuity requirements, ensuring that your response is both swift and coordinated.</p>
-        <p>We leverage AWS's automation capabilities to rapidly deploy response actions, such as isolating affected systems, rolling back changes, and applying necessary patches. Our expertise in cloud incident response ensures that your AWS environment is resilient and capable of recovering quickly from disruptions. By partnering with us, you gain access to a team of professionals dedicated to minimizing downtime and protecting your critical assets during security incidents.</p>
-    </div>
-    <div class="service">
-        <h2>Compliance Monitoring</h2>
-        <p>Maintaining compliance with industry standards and regulations is crucial for any organization. Our Compliance Monitoring services utilize AWS's comprehensive suite of tools to ensure your cloud environment meets all necessary standards. We conduct regular audits and provide detailed reporting to help you stay compliant with regulations such as GDPR, HIPAA, and PCI-DSS.</p>
-        <p>Our team will implement and manage AWS's compliance tools to monitor your environment continuously, ensuring that any deviations from compliance are promptly addressed. We provide you with the necessary documentation and insights to demonstrate your adherence to regulatory requirements, allowing you to focus on your core business activities with confidence. Choosing us means having a partner committed to ensuring that your cloud operations remain compliant and secure.</p>
-    </div>
-    <div class="service">
-        <h2>Vulnerability Management</h2>
-        <p>Effective Vulnerability Management is essential for protecting your cloud infrastructure from potential threats. Our services include comprehensive scanning and risk assessment using AWS Inspector and other advanced tools to identify and address vulnerabilities before they can be exploited. We prioritize vulnerabilities based on their risk level and impact, providing you with actionable recommendations to remediate identified issues.</p>
-        <p>Our team will work with you to integrate these vulnerability management tools into your AWS environment, ensuring that scans are conducted regularly and that your security posture is continuously improved. By partnering with us, you benefit from our proactive approach to vulnerability management, which helps prevent security breaches and maintain the integrity of your cloud infrastructure.</p>
-    </div>
-    <div class="cta">
-        <h3>Ready to Secure Your Cloud Environment?</h3>
-        <a href="mailto:your-email@example.com">Contact Us Today</a>
-    </div>
-</section>
+    <section>
+        <div class="service">
+            <h2>Threat Detection</h2>
+            <p>Leverage our advanced threat detection services using AWS CloudTrail and GuardDuty to keep your cloud environment secure. Our solutions provide real-time monitoring and analysis to promptly identify and address potential threats. We utilize state-of-the-art techniques to ensure that your environment is protected against both known and emerging threats.</p>
+            <p>Our threat detection services include setting up and configuring AWS CloudTrail to capture API calls and AWS GuardDuty for intelligent threat detection. We offer detailed reports and actionable insights to help you understand and mitigate risks effectively.</p>
+        </div>
+        <div class="service">
+            <h2>Incident Response</h2>
+            <p>Our incident response services are designed to quickly address and mitigate security incidents. Utilizing AWS Lambda, we automate response actions to ensure a swift and effective resolution. Our approach minimizes downtime and reduces the impact of security incidents on your operations.</p>
+            <p>We provide a comprehensive incident response strategy that includes detection, analysis, containment, eradication, and recovery. Our team is skilled in handling various types of incidents, ensuring that your cloud environment remains resilient and secure.</p>
+        </div>
+        <div class="service">
+            <h2>Compliance Monitoring</h2>
+            <p>Ensure your cloud environment meets industry standards with our compliance monitoring services. We provide regular audits and detailed reporting to help you stay compliant with regulations. Our team helps you navigate the complexities of compliance requirements and ensures that your cloud setup adheres to the latest standards.</p>
+            <p>We utilize AWS tools to continuously monitor your environment for compliance, providing you with actionable insights and recommendations. Our approach helps you avoid potential penalties and maintain a secure and compliant infrastructure.</p>
+        </div>
+        <div class="service">
+            <h2>Vulnerability Management</h2>
+            <p>Identify and address vulnerabilities before they become threats. Our vulnerability management services include comprehensive scanning and risk assessment to protect your cloud infrastructure. We employ advanced tools to detect and analyze vulnerabilities, ensuring that you are protected against potential exploits.</p>
+            <p>Our services also include remediation strategies and follow-up assessments to ensure that vulnerabilities are effectively managed. We work closely with you to prioritize and address the most critical issues, enhancing the overall security of your cloud environment.</p>
+        </div>
+        <div class="cta">
+            <h3>Ready to Secure Your Cloud Environment?</h3>
+            <a href="mailto:your-email@example.com">Contact Us Today</a>
+        </div>
+    </section>
 
-  <!-- Matrix effect script -->
+    <!-- Matrix effect script -->
     <script>
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
+
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+
         const fontSize = 16;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
-        const characters = '0123456789';
+
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
         const charArray = characters.split('');
+
         function draw() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#0F0';
+
+            ctx.fillStyle = '#87CEFA'; // Light blue color
             ctx.font = `${fontSize}px monospace`;
+
             for (let i = 0; i < drops.length; i++) {
                 const text = charArray[Math.floor(Math.random() * charArray.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
                 drops[i]++;
             }
         }
+
         setInterval(draw, 30);
+
         window.onresize = function () {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
