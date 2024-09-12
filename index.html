@@ -130,7 +130,7 @@
         </div>
     </section>
 
-    <!-- Matrix effect script -->
+  <!-- Matrix effect script -->
     <script>
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
@@ -140,16 +140,16 @@
 
         const fontSize = 16;
         const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(0);
+        const drops = Array(Math.floor(columns)).fill(1);
 
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const characters = '0123456789';
         const charArray = characters.split('');
 
         function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Semi-transparent background
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = '#0F0'; // Green text color
+            ctx.fillStyle = '#0F0';
             ctx.font = `${fontSize}px monospace`;
 
             for (let i = 0; i < drops.length; i++) {
