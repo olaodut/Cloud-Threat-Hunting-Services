@@ -4,42 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome To My World - Cloud Threat Hunting</title>
-    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: 'PT Serif', serif;
+            position: relative;
+            overflow: auto;
+        }
+
+        /* Matrix effect canvas */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Content container */
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Header styles */
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            color: #87CEFA; /* Light blue color for the header */
+        }
+
+        /* Section styles */
+        section {
+            padding: 20px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        /* Service box styles */
+        .service {
+            background-color: #333; /* Dark grey background for contrast */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            color: #ddd; /* Lighter text color for readability */
+        }
+
+        .service h2 {
+            color: #87CEFA; /* Light blue for headers */
+        }
+
+        .service p {
+            color: #ccc; /* Slightly lighter text color */
+        }
+
+        /* CTA styles */
+        .cta {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .cta h3 {
+            color: #87CEFA; /* Light blue color */
+        }
+
+        .cta a {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #87CEFA; /* Light blue background */
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .cta a:hover {
+            background-color: #333; /* Dark grey background on hover */
+        }
+    </style>
 </head>
 <body>
+
     <!-- Matrix effect canvas -->
     <canvas id="matrix"></canvas>
 
-    <header>
-        <h1>Welcome To My World - Cloud Threat Hunting</h1>
-    </header>
-    <section>
-        <div class="service">
-            <h2>Threat Detection</h2>
-            <p>Leverage our advanced threat detection services using AWS CloudTrail and GuardDuty to keep your cloud environment secure. Our solutions provide real-time monitoring and analysis to promptly identify and address potential threats. We utilize state-of-the-art techniques to ensure that your environment is protected against both known and emerging threats.</p>
-            <p>Our threat detection services include setting up and configuring AWS CloudTrail to capture API calls and AWS GuardDuty for intelligent threat detection. We offer detailed reports and actionable insights to help you understand and mitigate risks effectively.</p>
-        </div>
-        <div class="service">
-            <h2>Incident Response</h2>
-            <p>Our incident response services are designed to quickly address and mitigate security incidents. Utilizing AWS Lambda, we automate response actions to ensure a swift and effective resolution. Our approach minimizes downtime and reduces the impact of security incidents on your operations.</p>
-            <p>We provide a comprehensive incident response strategy that includes detection, analysis, containment, eradication, and recovery. Our team is skilled in handling various types of incidents, ensuring that your cloud environment remains resilient and secure.</p>
-        </div>
-        <div class="service">
-            <h2>Compliance Monitoring</h2>
-            <p>Ensure your cloud environment meets industry standards with our compliance monitoring services. We provide regular audits and detailed reporting to help you stay compliant with regulations. Our team helps you navigate the complexities of compliance requirements and ensures that your cloud setup adheres to the latest standards.</p>
-            <p>We utilize AWS tools to continuously monitor your environment for compliance, providing you with actionable insights and recommendations. Our approach helps you avoid potential penalties and maintain a secure and compliant infrastructure.</p>
-        </div>
-        <div class="service">
-            <h2>Vulnerability Management</h2>
-            <p>Identify and address vulnerabilities before they become threats. Our vulnerability management services include comprehensive scanning and risk assessment to protect your cloud infrastructure. We employ advanced tools to detect and analyze vulnerabilities, ensuring that you are protected against potential exploits.</p>
-            <p>Our services also include remediation strategies and follow-up assessments to ensure that vulnerabilities are effectively managed. We work closely with you to prioritize and address the most critical issues, enhancing the overall security of your cloud environment.</p>
-        </div>
-        <div class="cta">
-            <h3>Ready to Secure Your Cloud Environment?</h3>
-            <a href="mailto:your-email@example.com">Contact Us Today</a>
-        </div>
-    </section>
+    <div class="content">
+        <header>
+            <h1>Welcome To My World - Cloud Threat Hunting</h1>
+        </header>
+
+        <section>
+            <div class="service">
+                <h2>Threat Detection</h2>
+                <p>Leverage our advanced threat detection services using AWS CloudTrail and GuardDuty to keep your cloud environment secure. Our solutions provide real-time monitoring and analysis to promptly identify and address potential threats. We utilize state-of-the-art techniques to ensure that your environment is protected against both known and emerging threats.</p>
+                <p>Our threat detection services include setting up and configuring AWS CloudTrail to capture API calls and AWS GuardDuty for intelligent threat detection. We offer detailed reports and actionable insights to help you understand and mitigate risks effectively.</p>
+            </div>
+            <div class="service">
+                <h2>Incident Response</h2>
+                <p>Our incident response services are designed to quickly address and mitigate security incidents. Utilizing AWS Lambda, we automate response actions to ensure a swift and effective resolution. Our approach minimizes downtime and reduces the impact of security incidents on your operations.</p>
+                <p>We provide a comprehensive incident response strategy that includes detection, analysis, containment, eradication, and recovery. Our team is skilled in handling various types of incidents, ensuring that your cloud environment remains resilient and secure.</p>
+            </div>
+            <div class="service">
+                <h2>Compliance Monitoring</h2>
+                <p>Ensure your cloud environment meets industry standards with our compliance monitoring services. We provide regular audits and detailed reporting to help you stay compliant with regulations. Our team helps you navigate the complexities of compliance requirements and ensures that your cloud setup adheres to the latest standards.</p>
+                <p>We utilize AWS tools to continuously monitor your environment for compliance, providing you with actionable insights and recommendations. Our approach helps you avoid potential penalties and maintain a secure and compliant infrastructure.</p>
+            </div>
+            <div class="service">
+                <h2>Vulnerability Management</h2>
+                <p>Identify and address vulnerabilities before they become threats. Our vulnerability management services include comprehensive scanning and risk assessment to protect your cloud infrastructure. We employ advanced tools to detect and analyze vulnerabilities, ensuring that you are protected against potential exploits.</p>
+                <p>Our services also include remediation strategies and follow-up assessments to ensure that vulnerabilities are effectively managed. We work closely with you to prioritize and address the most critical issues, enhancing the overall security of your cloud environment.</p>
+            </div>
+            <div class="cta">
+                <h3>Ready to Secure Your Cloud Environment?</h3>
+                <a href="mailto:your-email@example.com">Contact Us Today</a>
+            </div>
+        </section>
+    </div>
 
     <!-- Matrix effect script -->
     <script>
@@ -81,5 +173,6 @@
             canvas.height = window.innerHeight;
         };
     </script>
+
 </body>
 </html>
