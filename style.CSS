@@ -1,38 +1,24 @@
-/* Body and basic styling */
+/* Basic styling */
 body {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #0f0f0f;
+    background-color: black;
     color: #00ff00;
-    overflow: hidden;
 }
 
 /* Matrix effect background */
-@keyframes matrixEffect {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
-}
-.matrix {
+canvas {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: -1;
     width: 100%;
     height: 100%;
-    background-color: #000;
-    overflow: hidden;
-}
-.matrix span {
-    position: absolute;
-    color: #00ff00;
-    font-size: 16px;
-    font-family: 'Roboto Mono', monospace;
-    animation: matrixEffect linear infinite;
-    opacity: 0;
+    z-index: -1;
+    background-color: black;
 }
 
-/* Positioning of elements */
+/* Header Styling */
 header {
     background-color: rgba(0, 0, 0, 0.8);
     color: #00ff00;
@@ -46,36 +32,24 @@ header h1 {
     letter-spacing: 2px;
 }
 
+/* Section styling */
 section {
     padding: 20px;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-h2, h3 {
-    color: #00ff00;
-    text-transform: uppercase;
-}
-
-/* Service cards */
 .service {
     margin-bottom: 20px;
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 20px;
-    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 5px;
     border: 1px solid #00ff00;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease-in-out;
-}
-
-.service:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .service h2 {
     font-size: 1.75em;
-    margin-bottom: 10px;
 }
 
 .service p {
@@ -84,7 +58,6 @@ h2, h3 {
     color: #dcdcdc;
 }
 
-/* Call-to-action button */
 .cta {
     text-align: center;
     margin-top: 30px;
@@ -105,24 +78,4 @@ h2, h3 {
 .cta a:hover {
     background-color: #00ff00;
     color: #000;
-}
-
-/* Make the page scrollable while keeping the matrix effect */
-html, body {
-    height: 100%;
-    overflow-x: hidden;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2em;
-    }
-    .service {
-        padding: 15px;
-    }
-    .cta a {
-        padding: 10px 20px;
-        font-size: 1.1em;
-    }
 }
