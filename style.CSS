@@ -42,11 +42,11 @@ section {
 
 /* Box styles for each section */
 .service, .cta {
-    background-color: #333; /* Grey background for boxes */
+    background-color: #2c2c2c; /* Dark grey background for boxes */
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* Form styles */
