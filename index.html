@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Threat-Hunting Services | Your Company</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Linking to external CSS file -->
+    <title>Cloud Threat-Hunting Services</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Linking external CSS file -->
 </head>
 <body>
 
     <!-- Matrix background container -->
-    <div class="matrix"></div>
+    <canvas id="matrix"></canvas>
 
     <header>
         <h1>Cloud Threat-Hunting Services</h1>
@@ -18,45 +18,22 @@
     <section>
         <div class="service">
             <h2>Threat Detection</h2>
-            <p>Leverage our advanced threat detection services using AWS CloudTrail and GuardDuty to keep your cloud environment secure. We provide real-time alerts and comprehensive analysis to swiftly identify and address potential threats.</p>
+            <p>We use advanced cloud services like AWS CloudTrail and GuardDuty to secure your cloud environment. Real-time alerts and analysis ensure that potential threats are identified quickly.</p>
         </div>
         <div class="service">
             <h2>Incident Response</h2>
-            <p>Get rapid and effective incident response with our automated solutions. Using AWS Lambda, we streamline response actions and minimize the impact of security incidents.</p>
+            <p>Our automated solutions respond to security incidents swiftly, leveraging AWS Lambda for effective mitigation of threats.</p>
         </div>
         <div class="service">
             <h2>Compliance Monitoring</h2>
-            <p>Ensure your cloud environment meets industry standards with our compliance monitoring services. We provide regular audits and detailed reporting to help you stay compliant with regulations.</p>
+            <p>Our compliance services ensure your cloud environment meets industry standards, with regular audits and reporting for regulatory compliance.</p>
         </div>
-        <div class="service">
-            <h2>Vulnerability Management</h2>
-            <p>Identify and address vulnerabilities before they become threats. Our vulnerability management services include comprehensive scanning and risk assessment to protect your cloud infrastructure.</p>
-        </div>
-
         <div class="cta">
             <h3>Ready to Secure Your Cloud Environment?</h3>
             <a href="mailto:your-email@example.com">Contact Us Today</a>
         </div>
     </section>
 
-    <script>
-        // Matrix effect logic
-        const matrix = document.querySelector('.matrix');
-        const columns = window.innerWidth / 20;
-        for (let i = 0; i < columns; i++) {
-            const column = document.createElement('span');
-            column.style.left = `${i * 20}px`;
-            column.textContent = Math.random().toString(36)[2];
-            column.style.animationDuration = `${Math.random() * 1 + 2}s`;
-            matrix.appendChild(column);
-        }
-        setInterval(() => {
-            const spans = document.querySelectorAll('.matrix span');
-            spans.forEach(span => {
-                span.textContent = Math.random().toString(36)[2];
-            });
-        }, 100);
-    </script>
-
+    <script src="script.js"></script> <!-- Linking external JS file for the matrix effect -->
 </body>
 </html>
