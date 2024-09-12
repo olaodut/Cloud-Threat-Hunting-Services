@@ -15,6 +15,7 @@
             font-family: 'PT Serif', serif;
             position: relative;
             overflow: auto;
+            text-align: center; /* Center text for entire body */
         }
         /* Matrix effect canvas */
         #matrix {
@@ -31,10 +32,11 @@
             z-index: 1;
             padding: 20px;
             box-sizing: border-box;
+            margin: 0 auto; /* Center content container */
+            max-width: 1200px; /* Limit max-width for larger screens */
         }
         /* Header styles */
         header {
-            text-align: center;
             padding-bottom: 20px;
         }
         /* Navigation styles */
@@ -42,6 +44,7 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
+            display: inline-block; /* Center navigation */
         }
         nav ul li {
             display: inline;
@@ -63,7 +66,9 @@
             padding: 20px;
             background-color: #333; /* Grey background for each service */
             border-radius: 10px; /* Rounded corners for each grey box */
-            margin-bottom: 20px; /* Space between service boxes */
+            margin: 0 auto 20px auto; /* Center boxes */
+            max-width: 800px; /* Limit max-width for service boxes */
+            text-align: left; /* Align text to the left */
         }
         /* Form styles */
         form {
@@ -85,27 +90,28 @@
         }
         /* Article styles */
         article {
-            margin-bottom: 20px;
+            margin: 0 auto 20px auto; /* Center articles */
             text-align: left;
             background-color: #333; /* Grey background for articles */
             padding: 20px;
             border-radius: 10px; /* Rounded corners for the grey boxes */
+            max-width: 800px; /* Limit max-width for articles */
         }
         /* Footer styles */
         footer {
-            text-align: center;
             padding: 10px;
             background-color: rgba(0, 0, 0, 0.8);
             color: #87CEFA;
             max-width: 400px; /* Smaller box for footer */
-            margin: 0 auto; /* Center footer */
+            margin: 20px auto; /* Center footer and add margin */
         }
         /* CTA styles */
         .cta {
-            text-align: center;
             padding: 20px;
             background-color: #333; /* Grey background for CTA */
             border-radius: 10px; /* Rounded corners for the CTA box */
+            margin: 20px auto; /* Center CTA box */
+            max-width: 800px; /* Limit max-width for CTA box */
         }
         .cta a {
             color: #87CEFA; /* Light blue color for CTA link */
