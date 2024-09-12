@@ -33,24 +33,6 @@ header {
     padding-bottom: 20px;
 }
 
-/* Navigation styles */
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
 /* Section styles */
 section {
     padding: 20px;
@@ -60,19 +42,20 @@ section {
 
 /* Service box styles */
 .service {
-    background-color: #333;
+    background-color: #333; /* Dark grey background for contrast */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     margin-bottom: 20px;
+    color: #ddd; /* Lighter text color for readability */
 }
 
 .service h2 {
-    color: #0F0;
+    color: #87CEFA; /* Light blue for headers */
 }
 
 .service p {
-    color: #ccc;
+    color: #ccc; /* Slightly lighter text color */
 }
 
 /* CTA styles */
@@ -82,7 +65,7 @@ section {
 }
 
 .cta h3 {
-    color: #0F0;
+    color: #87CEFA; /* Light blue color */
 }
 
 .cta a {
@@ -90,13 +73,13 @@ section {
     padding: 10px 20px;
     font-size: 1.2em;
     color: #fff;
-    background-color: #0F0;
+    background-color: #87CEFA; /* Light blue background */
     text-decoration: none;
     border-radius: 5px;
 }
 
 .cta a:hover {
-    background-color: #333;
+    background-color: #333; /* Dark grey background on hover */
 }
 
 /* Form styles */
@@ -128,5 +111,5 @@ footer {
     text-align: center;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.8);
-    color: #0F0;
+    color: #87CEFA; /* Light blue color */
 }
