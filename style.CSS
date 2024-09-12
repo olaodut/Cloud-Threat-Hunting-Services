@@ -60,20 +60,43 @@ section {
 
 /* Service box styles */
 .service {
-    background-color: #333; /* Dark grey background for service boxes */
+    background-color: #333;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* CTA box styles */
+.service h2 {
+    color: #0F0;
+}
+
+.service p {
+    color: #ccc;
+}
+
+/* CTA styles */
 .cta {
-    background-color: #444; /* Slightly lighter grey background for CTA box */
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     text-align: center;
+    margin-top: 20px;
+}
+
+.cta h3 {
+    color: #0F0;
+}
+
+.cta a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #0F0;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.cta a:hover {
+    background-color: #333;
 }
 
 /* Form styles */
