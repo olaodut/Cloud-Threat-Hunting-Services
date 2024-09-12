@@ -33,6 +33,24 @@ header {
     padding-bottom: 20px;
 }
 
+/* Navigation styles */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 /* Section styles */
 section {
     padding: 20px;
@@ -40,13 +58,22 @@ section {
     margin-bottom: 20px;
 }
 
-/* Box styles for each section */
-.service, .cta {
-    background-color: #2c2c2c; /* Dark grey background for boxes */
+/* Service box styles */
+.service {
+    background-color: #333; /* Dark grey background for service boxes */
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* CTA box styles */
+.cta {
+    background-color: #444; /* Slightly lighter grey background for CTA box */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
 }
 
 /* Form styles */
