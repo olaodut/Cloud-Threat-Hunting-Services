@@ -42,6 +42,7 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
+            text-align: center;
         }
         nav ul li {
             display: inline;
@@ -98,6 +99,12 @@
             background-color: rgba(0, 0, 0, 0.8);
             color: #87CEFA;
         }
+        footer div {
+            display: inline-block;
+            background-color: #333;
+            padding: 10px 20px;
+            border-radius: 10px; /* Rounded corners for the footer box */
+        }
         /* CTA styles */
         .cta {
             text-align: center;
@@ -120,35 +127,65 @@
     <div class="content">
         <header>
             <h1>Welcome To My World - Cloud Threat Hunting</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <section>
-            <div class="service">
-                <h2>Threat Detection</h2>
-                <p>Leverage our advanced threat detection services using AWS CloudTrail and GuardDuty to keep your cloud environment secure. Our solutions provide real-time monitoring and analysis to promptly identify and address potential threats. We utilize state-of-the-art techniques to ensure that your environment is protected against both known and emerging threats.</p>
-                <p>Our threat detection services include setting up and configuring AWS CloudTrail to capture API calls and AWS GuardDuty for intelligent threat detection. We offer detailed reports and actionable insights to help you understand and mitigate risks effectively.</p>
-            </div>
-            <div class="service">
-                <h2>Incident Response</h2>
-                <p>Our incident response services are designed to quickly address and mitigate security incidents. Utilizing AWS Lambda, we automate response actions to ensure a swift and effective resolution. Our approach minimizes downtime and reduces the impact of security incidents on your operations.</p>
-                <p>We provide a comprehensive incident response strategy that includes detection, analysis, containment, eradication, and recovery. Our team is skilled in handling various types of incidents, ensuring that your cloud environment remains resilient and secure.</p>
-            </div>
-            <div class="service">
-                <h2>Compliance Monitoring</h2>
-                <p>Ensure your cloud environment meets industry standards with our compliance monitoring services. We provide regular audits and detailed reporting to help you stay compliant with regulations. Our team helps you navigate the complexities of compliance requirements and ensures that your cloud setup adheres to the latest standards.</p>
-                <p>We utilize AWS tools to continuously monitor your environment for compliance, providing you with actionable insights and recommendations. Our approach helps you avoid potential penalties and maintain a secure and compliant infrastructure.</p>
-            </div>
-            <div class="service">
-                <h2>Vulnerability Management</h2>
-                <p>Identify and address vulnerabilities before they become threats. Our vulnerability management services include comprehensive scanning and risk assessment to protect your cloud infrastructure. We employ advanced tools to detect and analyze vulnerabilities, ensuring that you are protected against potential exploits.</p>
-                <p>Our services also include remediation strategies and follow-up assessments to ensure that vulnerabilities are effectively managed. We work closely with you to prioritize and address the most critical issues, enhancing the overall security of your cloud environment.</p>
-            </div>
-            <div class="cta">
-                <h3>Ready to Secure Your Cloud Environment?</h3>
-                <a href="mailto:themaninthecloud@gmail.com">Contact Us Today</a>
-            </div>
+        <section id="home">
+            <h2 style="text-align: center;">Home</h2>
+            <p style="text-align: center;">Don't worry about who I am. I'm just here to help.</p>
         </section>
+
+        <section id="blog">
+            <h2 style="text-align: center;">Blog</h2>
+            <article>
+                <h3>Welcome to My World: Building a Cybersecurity Community</h3>
+                <p>Welcome to the very first post on <strong>"Welcome to My World"</strong>, a place where cybersecurity enthusiasts, learners, and professionals come together to share knowledge, grow, and support each other. Whether you’re new to cybersecurity or have years of experience under your belt, this blog is designed to help you navigate the ever-evolving landscape of security threats and defense strategies.</p>
+                <p><strong>Why Cybersecurity?</strong><br>
+                Cybersecurity isn’t just about protecting data; it’s about safeguarding our digital lives. From personal information to corporate secrets, everything is vulnerable without the right defenses. That’s why I'm passionate about growing this space — to create a community where we can learn together, exchange ideas, and empower each other to become better defenders of the digital world.</p>
+                <p><strong>What to Expect</strong><br>
+                In this blog, I’ll cover a variety of topics ranging from threat hunting to vulnerability management, penetration testing, and beyond. Here are a few things you can look forward to:
+                <ul>
+                    <li>Practical Tutorials: Step-by-step guides on tools like Burp Suite, Nmap, and Kali Linux.</li>
+                    <li>Latest Threat Intelligence: Stay updated on emerging cybersecurity threats and how to mitigate them.</li>
+                    <li>Scripts and Projects: Get access to custom scripts and projects I’ve worked on, designed to improve security practices.</li>
+                    <li>Community Collaboration: I’ll share tips on how to engage in platforms, and how we can support each other in certification and training efforts.</li>
+                </ul>
+                </p>
+                <p><strong>Growing Together</strong><br>
+                This journey isn’t just about one person; it’s about building a strong, engaged community. I encourage you to comment, share your thoughts, and even suggest topics you’d like to see covered. Let’s make cybersecurity more accessible and foster an environment of continuous learning.</p>
+            </article>
+        </section>
+
+        <section id="contact">
+            <h2 style="text-align: center;">Contact</h2>
+            <form action="https://formspree.io/f/xrbzvgbz" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+
+        <div class="cta">
+            <h3>Ready to Secure Your Cloud Environment?</h3>
+            <a href="mailto:themaninthecloud@gmail.com">Contact Us Today</a>
+        </div>
     </div>
+
+    <footer>
+        <div>
+            <p>&copy; 2024 Welcome To My World</p>
+        </div>
+    </footer>
 
     <!-- Matrix effect script -->
     <script>
