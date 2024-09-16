@@ -1,13 +1,34 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session, redirect, url_for
 import smtplib
 from email.mime.text import MIMEText
 import datetime
 import time
 from threading import Thread
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'
 
-# Store scheduled patches (in-memory for simplicity)
+# Flask-Login setup
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+# Simulate a database of users (use SQLAlchemy for real-world use)
+users = {'admin': {'password': 'adminpass'}}
+
+# User class for Flask-Login
+class User(UserMixin):
+    def __init__(self, id):
+        self.id = id
+
+# Define User Loader (required by Flask-Login)
+@login_manager.user_loader
+def load_user(user_id):
+    if user_id in users:
+        return User(user_id)
+    return None
+
+# Simulated storage for scheduled patches (could be a DB)
 scheduled_patches = []
 
 # Email sending function
@@ -18,7 +39,7 @@ def send_email(subject, recipient, body):
     msg['To'] = recipient
 
     # Replace with your SMTP server details
-    smtp_server = 'smtp.gmail.com'  # Gmail SMTP server example
+    smtp_server = 'smtp.gmail.com'
     smtp_port = 587
     smtp_user = 'youremail@example.com'  # Replace with your email
     smtp_password = 'yourpassword'  # Replace with your email password
@@ -34,6 +55,7 @@ def send_email(subject, recipient, body):
 
 # Route to handle scan and send email
 @app.route('/send-email', methods=['GET'])
+@login_required
 def scan_and_send_email():
     # Send an email when this route is accessed
     send_email(
@@ -45,6 +67,7 @@ def scan_and_send_email():
 
 # Route to schedule patch management
 @app.route('/schedule-patch', methods=['POST'])
+@login_required
 def schedule_patch():
     data = request.get_json()
     patch_time = data.get('patch_time')
@@ -79,6 +102,32 @@ def apply_patches():
                 scheduled_patches.remove(patch)
 
         time.sleep(60)  # Check every minute
+
+# User login route
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+
+    if username in users and users[username]['password'] == password:
+        user = User(username)
+        login_user(user)
+        return jsonify({"message": "Login successful!"})
+    return jsonify({"message": "Invalid credentials!"}), 401
+
+# User logout route
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+# Protect a route (e.g., dashboard)
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return jsonify({"message": f"Welcome to your dashboard, {current_user.id}!"})
 
 if __name__ == '__main__':
     # Start the patch management process in the background
