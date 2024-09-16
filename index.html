@@ -6,12 +6,13 @@
     <title>VulnGuard - Automated Security</title>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
     <style>
-         .content {
+        .content {
             position: relative;
             z-index: 1;
             padding: 20px;
             box-sizing: border-box;
         }
+
         /* General styles */
         body {
             margin: 0;
@@ -48,8 +49,6 @@
         .result {
             margin-top: 20px;
         }
-
-        /* Additional sections styles */
 
         /* Matrix effect canvas */
         #matrix {
@@ -108,15 +107,17 @@
             padding: 0;
             margin: 0;
         }
+
         nav ul li {
             display: inline;
             margin-right: 15px;
         }
+
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2em; /* Adjust size as needed */
+            font-size: 1.2em;
             display: inline-block;
             animation: fadeInOut 3s linear infinite;
         }
@@ -137,6 +138,20 @@
             box-sizing: border-box;
             margin-bottom: 20px;
             text-align: center;
+        }
+        
+        /* Contact form */
+        form {
+            margin-top: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #333;
+            color: white;
+            border: 1px solid #4CAF50;
         }
     </style>
 </head>
@@ -177,7 +192,19 @@
             <div class="result" id="scan-result"></div>
         </section>
 
-                <!-- Matrix effect script -->
+        <!-- Contact section -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form action="https://formspree.io/f/your-form-id" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required><br>
+                <input type="email" name="email" placeholder="Your Email" required><br>
+                <textarea name="message" placeholder="Your Message" required></textarea><br>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Matrix effect script -->
     <script>
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
@@ -207,7 +234,11 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         };
-        </script>
-        
+
+        // Run scan button functionality (for now just updates text)
+        document.getElementById('run-scan').addEventListener('click', function() {
+            document.getElementById('scan-result').innerHTML = 'Scan in progress...';
+        });
+    </script>
 </body>
 </html>
