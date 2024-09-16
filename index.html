@@ -169,9 +169,13 @@
             <p>Automated vulnerability scans, patch management, and real-time reporting for businesses of all sizes.</p>
         </section>
 
-        <!-- Dashboard (Placeholder) -->
-        
-       <p>???</p>
+        <!-- Dashboard section -->
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <p>Click the button below to run a vulnerability scan.</p>
+            <button id="run-scan">Run Scan</button>
+            <div class="result" id="scan-result"></div>
+        </section>
 
                 <!-- Matrix effect script -->
     <script>
@@ -205,10 +209,17 @@
         };
         </script>
         
-        <script>
+        <!-- Mock Vulnerability Scan Script -->
+    <script>
     document.getElementById('run-scan').addEventListener('click', function() {
-        
-        
+        const resultDiv = document.getElementById('scan-result');
+        resultDiv.innerHTML = 'Running vulnerability scan...';
 
+        // Simulate scan result (replace this with real scan trigger or API call)
+        setTimeout(function() {
+            resultDiv.innerHTML = '<p>Scan complete! No critical vulnerabilities found.</p>';
+        }, 3000); // Simulating scan time
+    });
+    </script>
 </body>
 </html>
