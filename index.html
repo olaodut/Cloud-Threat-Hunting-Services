@@ -209,17 +209,5 @@
         };
         </script>
         
-        <!-- Mock Vulnerability Scan Script -->
-    <script>
-    document.getElementById('run-scan').addEventListener('click', function() {
-        const resultDiv = document.getElementById('scan-result');
-        resultDiv.innerHTML = 'Running vulnerability scan...';
-
-        // Simulate scan result (replace this with real scan trigger or API call)
-        setTimeout(function() {
-            resultDiv.innerHTML = '<p>Scan complete! No critical vulnerabilities found.</p>';
-        }, 3000); // Simulating scan time
-    });
-    </script>
 </body>
 </html>
