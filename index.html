@@ -6,23 +6,19 @@
     <title>VulnGuard - Automated Security</title>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
     <style>
-        /* General styles */
         body {
             margin: 0;
             padding: 0;
             background-color: black;
             color: white;
             font-family: 'PT Serif', serif;
-            overflow: auto;
         }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             text-align: center;
         }
-
         button {
             padding: 10px;
             width: 100%;
@@ -31,12 +27,9 @@
             border: none;
             cursor: pointer;
         }
-
         .result {
             margin-top: 20px;
         }
-
-        /* Matrix effect canvas */
         #matrix {
             position: fixed;
             top: 0;
@@ -45,67 +38,38 @@
             height: 100%;
             z-index: -1;
         }
-
-        /* Header styles */
         header {
             text-align: center;
             padding-bottom: 20px;
         }
-
-        /* Animation for rotating the h1 header */
         h1 {
             animation: spin 5s linear infinite;
         }
-
-        /* Keyframes for the spin animation */
         @keyframes spin {
-            from {
-                transform: rotateY(0deg);
-            }
-            to {
-                transform: rotateY(360deg);
-            }
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
         }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2em;
-                animation: spin 15s linear infinite;
-            }
-        }
-
         nav ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
-
         nav ul li {
             display: inline;
             margin-right: 15px;
         }
-
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.2em;
         }
-
-        /* Section styles */
         section {
             padding: 20px;
             box-sizing: border-box;
             margin-bottom: 20px;
             text-align: center;
         }
-
-        /* Contact form */
-        form {
-            margin-top: 20px;
-        }
-
         input, textarea {
             width: 100%;
             padding: 10px;
@@ -114,8 +78,6 @@
             color: white;
             border: 1px solid #4CAF50;
         }
-
-        /* Payment button */
         .payment {
             background-color: #FF5733;
             color: white;
@@ -124,8 +86,6 @@
             cursor: pointer;
             margin-top: 20px;
         }
-
-        /* Subscription section */
         .subscription-plan {
             background-color: #444;
             color: white;
@@ -173,6 +133,10 @@
             <p>Click the button below to run a vulnerability scan.</p>
             <button id="run-scan">Run Scan</button>
             <div class="result" id="scan-result"></div>
+            <h3>Your Scan History</h3>
+            <div id="scan-history"></div>
+            <h3>Your Patch History</h3>
+            <div id="patch-history"></div>
         </section>
 
         <!-- Patch Management section -->
@@ -181,14 +145,11 @@
             <p>Schedule your next patch management service:</p>
             <form id="schedule-patch-form">
                 <label for="patch-time">Choose a patch time (YYYY-MM-DD HH:MM:SS):</label>
-                <input type="text" id="patch-time" name="patch-time" placeholder="2024-09-16 18:30:00" required><br><br>
-
+                <input type="text" id="patch-time" name="patch-time" placeholder="2024-09-16 18:30:00" required>
                 <label for="client-name">Your Name:</label>
-                <input type="text" id="client-name" name="client-name" required><br><br>
-
+                <input type="text" id="client-name" name="client-name" required>
                 <label for="client-email">Your Email:</label>
-                <input type="email" id="client-email" name="client-email" required><br><br>
-
+                <input type="email" id="client-email" name="client-email" required>
                 <button type="submit">Schedule Patch</button>
                 <div class="result" id="patch-result"></div>
             </form>
@@ -214,24 +175,21 @@
             <h2>Login</h2>
             <form id="login-form">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required><br><br>
-                
+                <input type="text" id="username" name="username" required>
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required><br><br>
-
+                <input type="password" id="password" name="password" required>
                 <button type="submit">Login</button>
                 <div class="result" id="login-result"></div>
             </form>
-            <p>Don't have an account? <a href="#signup">Sign up here</a>.</p>
         </section>
 
         <!-- Contact section -->
         <section id="contact">
             <h2>Contact Us</h2>
             <form action="https://formspree.io/f/your-form-id" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required><br>
-                <input type="email" name="email" placeholder="Your Email" required><br>
-                <textarea name="message" placeholder="Your Message" required></textarea><br>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
         </section>
@@ -279,9 +237,6 @@
                     } else {
                         document.getElementById('scan-result').innerHTML = 'Error sending email.';
                     }
-                })
-                .catch(error => {
-                    document.getElementById('scan-result').innerHTML = 'Error sending email.';
                 });
         });
 
@@ -294,46 +249,12 @@
 
             fetch('/schedule-patch', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    patch_time: patchTime,
-                    client: clientName,
-                    email: clientEmail
-                }),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ patch_time: patchTime, client: clientName, email: clientEmail })
             })
             .then(response => response.json())
             .then(data => {
                 document.getElementById('patch-result').innerHTML = data.message;
-            })
-            .catch(error => {
-                document.getElementById('patch-result').innerHTML = 'Error scheduling patch.';
-            });
-        });
-
-        // Login form functionality
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            fetch('/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('login-result').innerHTML = data.message;
-            })
-            .catch(error => {
-                document.getElementById('login-result').innerHTML = 'Error logging in.';
             });
         });
     </script>
