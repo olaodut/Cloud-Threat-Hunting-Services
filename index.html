@@ -238,6 +238,9 @@
         // Run scan button functionality (for now just updates text)
         document.getElementById('run-scan').addEventListener('click', function() {
             document.getElementById('scan-result').innerHTML = 'Scan in progress...';
+            fetch('/send-email')  // This would trigger the email sending endpoint
+                .then(response => response.json())
+                .then(data => console.log('Email sent'));
         });
     </script>
 </body>
