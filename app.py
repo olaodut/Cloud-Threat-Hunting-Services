@@ -1,41 +1,39 @@
-from flask import Flask, jsonify, request, render_template
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, jsonify, request, session, redirect, url_for
 import smtplib
 from email.mime.text import MIMEText
 import datetime
+import time
 from threading import Thread
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
-import bcrypt
+import stripe  # For payment integration
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
-
-# SQLAlchemy setup
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///vulnguard.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-# Flask-Login setup
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# User model
-class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)
+# Stripe configuration
+stripe.api_key = 'your_stripe_secret_key'
 
-# Patch model
-class Patch(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    client_name = db.Column(db.String(100), nullable=False)
-    client_email = db.Column(db.String(120), nullable=False)
-    patch_time = db.Column(db.DateTime, nullable=False)
-    applied = db.Column(db.Boolean, default=False)
+# Simulate a database of users (for simplicity)
+users = {
+    'admin': {'password': 'adminpass', 'role': 'admin'},
+    'user': {'password': 'userpass', 'role': 'user'}
+}
 
-# Create tables in the database
-with app.app_context():
-    db.create_all()
+# Simulated storage for scheduled patches
+scheduled_patches = []
+
+# User class for Flask-Login
+class User(UserMixin):
+    def __init__(self, id):
+        self.id = id
+
+@login_manager.user_loader
+def load_user(user_id):
+    if user_id in users:
+        return User(user_id)
+    return None
 
 # Email sending function
 def send_email(subject, recipient, body):
@@ -43,12 +41,10 @@ def send_email(subject, recipient, body):
     msg['Subject'] = subject
     msg['From'] = 'youremail@example.com'
     msg['To'] = recipient
-
     smtp_server = 'smtp.gmail.com'
     smtp_port = 587
     smtp_user = 'youremail@example.com'
     smtp_password = 'yourpassword'
-
     try:
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             server.starttls()
@@ -58,34 +54,95 @@ def send_email(subject, recipient, body):
     except Exception as e:
         print(f"Error sending email: {e}")
 
-# User registration route with password hashing and validation
-@app.route('/register', methods=['POST'])
-def register():
+# Scan history and patch history routes
+@app.route('/scan-history')
+@login_required
+def scan_history():
+    scans = [{"date": "2024-09-16", "status": "Completed"}, {"date": "2024-09-10", "status": "Completed"}]
+    return jsonify(scans)
+
+@app.route('/patch-history')
+@login_required
+def patch_history():
+    patches = [{"date": "2024-09-15", "status": "Applied"}, {"date": "2024-09-01", "status": "Failed"}]
+    return jsonify(patches)
+
+# Route for sending scan report emails
+@app.route('/send-scan-report', methods=['POST'])
+@login_required
+def send_scan_report():
     data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
+    email = data.get('email')
+    send_email("Your Vulnerability Scan Report", email, "Scan completed successfully.")
+    return jsonify({"message": "Report sent successfully!"})
 
-    if len(username) < 3 or len(password) < 6:
-        return jsonify({"message": "Username must be at least 3 characters and password at least 6 characters!"}), 400
+# Security suggestions
+@app.route('/security-suggestions', methods=['GET'])
+@login_required
+def security_suggestions():
+    suggestions = ["Update your firewall rules", "Use 2FA", "Upgrade to SSL"]
+    return jsonify(suggestions)
 
-    if User.query.filter_by(username=username).first():
-        return jsonify({"message": "User already exists!"}), 400
+# Schedule a patch
+@app.route('/schedule-patch', methods=['POST'])
+@login_required
+def schedule_patch():
+    data = request.get_json()
+    patch_time = datetime.datetime.strptime(data.get('patch_time'), '%Y-%m-%d %H:%M:%S')
+    scheduled_patches.append({
+        'client': data.get('client'),
+        'email': data.get('email'),
+        'patch_time': patch_time
+    })
+    return jsonify({"message": "Patch scheduled successfully!"})
 
-    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-    new_user = User(username=username, password=hashed_password)
-    db.session.add(new_user)
-    db.session.commit()
-    return jsonify({"message": "User registered successfully!"})
+# Payment integration using Stripe
+@app.route('/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    try:
+        session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {
+                        'name': 'VulnGuard Pro Plan',
+                    },
+                    'unit_amount': 9900,
+                },
+                'quantity': 1,
+            }],
+            mode='subscription',
+            success_url=url_for('success', _external=True),
+            cancel_url=url_for('cancel', _external=True),
+        )
+        return jsonify(id=session.id)
+    except Exception as e:
+        return jsonify(error=str(e)), 403
 
-# User login route with password verification
+@app.route('/success')
+def success():
+    return jsonify({"message": "Payment successful!"})
+
+@app.route('/cancel')
+def cancel():
+    return jsonify({"message": "Payment canceled."})
+
+# AI-driven threat detection placeholder
+@app.route('/ai-threat-detection', methods=['GET'])
+@login_required
+def ai_threat_detection():
+    threats = ["Potential SQL Injection detected", "XSS vulnerability found"]
+    return jsonify(threats)
+
+# User login route
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
-
-    user = User.query.filter_by(username=username).first()
-    if user and bcrypt.checkpw(password.encode('utf-8'), user.password):
+    if username in users and users[username]['password'] == password:
+        user = User(username)
         login_user(user)
         return jsonify({"message": "Login successful!"})
     return jsonify({"message": "Invalid credentials!"}), 401
@@ -95,52 +152,16 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return jsonify({"message": "You have been logged out!"}), 200
+    return redirect(url_for('login'))
 
-# Route to schedule patch management
-@app.route('/schedule-patch', methods=['POST'])
+# Protect the admin route
+@app.route('/admin-dashboard')
 @login_required
-def schedule_patch():
-    data = request.get_json()
-    patch_time = datetime.datetime.strptime(data.get('patch_time'), '%Y-%m-%d %H:%M:%S')
-    
-    new_patch = Patch(
-        client_name=current_user.username,
-        client_email="client@example.com",  # You can make this dynamic
-        patch_time=patch_time
-    )
-    db.session.add(new_patch)
-    db.session.commit()
-
-    return jsonify({"message": "Patch scheduled successfully!"})
-
-# Function to check and apply scheduled patches
-def apply_patches():
-    while True:
-        current_time = datetime.datetime.now()
-        patches = Patch.query.filter(Patch.patch_time <= current_time, Patch.applied == False).all()
-
-        for patch in patches:
-            send_email(
-                subject="Patch Applied Successfully",
-                recipient=patch.client_email,
-                body=f"Dear {patch.client_name}, your patch has been applied successfully at {current_time}."
-            )
-            patch.applied = True
-            db.session.commit()
-
-        time.sleep(60)
-
-# User dashboard route
-@app.route('/dashboard')
-@login_required
-def dashboard():
-    patches = Patch.query.filter_by(client_name=current_user.username).all()
-    return render_template('dashboard.html', patches=patches)
+def admin_dashboard():
+    if current_user.id == 'admin':
+        return jsonify({"message": "Welcome, Admin!"})
+    else:
+        return jsonify({"error": "Access denied"}), 403
 
 if __name__ == '__main__':
-    patch_thread = Thread(target=apply_patches)
-    patch_thread.daemon = True
-    patch_thread.start()
-
     app.run(host='0.0.0.0', port=5000)
