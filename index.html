@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome To My World - Cloud Threat Hunting</title>
-    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <title>TITLE OF WEBPAGE</title>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
     <style>
+
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
         /* General styles */
         body {
             margin: 0;
@@ -15,8 +22,36 @@
             font-family: 'PT Serif', serif;
             position: relative;
             overflow: auto;
-            text-align: center; /* Center text for entire body */
         }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        /* Additional sections styles */
+
         /* Matrix effect canvas */
         #matrix {
             position: fixed;
@@ -26,25 +61,53 @@
             height: 100%;
             z-index: -1;
         }
+
         /* Content container */
         .content {
             position: relative;
             z-index: 1;
             padding: 20px;
             box-sizing: border-box;
-            margin: 0 auto; /* Center content container */
-            max-width: 1200px; /* Limit max-width for larger screens */
         }
+
         /* Header styles */
         header {
+            text-align: center;
             padding-bottom: 20px;
         }
+
+        /* Animation for rotating the h1 header */
+        h1 {
+            animation: spin 5s linear infinite;
+        }
+
+        /* Keyframes for the spin animation */
+        @keyframes spin {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg); /* Use rotate for a 2D spin */
+            }
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 768px) {
+            #matrix {
+                width: 100vw; /* Ensure the canvas covers the full viewport width */
+                height: 100vh; /* Ensure the canvas covers the full viewport height */
+            }
+            header h1 {
+                font-size: 2em; /* Adjust font size for smaller screens */
+                animation: spin 15s linear infinite; /* Slower spin animation on mobile */
+            }
+        }
+
         /* Navigation styles */
         nav ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
-            display: inline-block; /* Center navigation */
         }
         nav ul li {
             display: inline;
@@ -54,22 +117,65 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.2em; /* Adjust size as needed */
+            display: inline-block;
+            animation: fadeInOut 3s linear infinite;
         }
+
+        /* Keyframes for fading in and out */
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
         /* Section styles */
         section {
             padding: 20px;
             box-sizing: border-box;
             margin-bottom: 20px;
+            text-align: center;
         }
-        /* Grey box styles for services */
-        .service {
+
+        /* Blog container */
+        #main {
+            background-color: #333;
+            border-radius: 10px;
             padding: 20px;
-            background-color: #333; /* Grey background for each service */
-            border-radius: 10px; /* Rounded corners for each grey box */
-            margin: 0 auto 20px auto; /* Center boxes */
-            max-width: 800px; /* Limit max-width for service boxes */
-            text-align: left; /* Align text to the left */
+            margin: 0 auto;
+            max-width: 800px;
+            overflow: hidden;
+            position: relative;
         }
+
+        /* Blog posts container */
+        .main-posts {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            overflow-y: hidden; /* Hide vertical scrolling */
+            max-height: 600px;
+            scroll-snap-type: x mandatory; /* Horizontal snap type */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling for touch devices */
+        }
+
+        /* Individual blog post */
+        .main-post {
+            flex: 0 0 auto;
+            box-sizing: border-box;
+            padding: 20px;
+            scroll-snap-align: start; /* Snap alignment */
+            background-color: #444;
+            margin-right: 10px;
+            border-radius: 10px;
+            max-width: 300px;
+            max-height: 100%;
+            overflow-y: auto; /* Enable vertical scrolling within each post if needed */
+        }
+
         /* Form styles */
         form {
             display: flex;
@@ -77,142 +183,89 @@
             margin: 20px auto;
             max-width: 600px;
             text-align: left;
-            background-color: #333; /* Grey background for the form */
+            background-color: #333;
             padding: 20px;
-            border-radius: 10px; /* Rounded corners for the form */
+            border-radius: 10px;
         }
         form label {
             margin-top: 10px;
         }
         form input, form textarea, form button {
             margin-top: 5px;
-            width: 100%; /* Make inputs and buttons full-width */
+            width: 100%;
         }
-        /* Article styles */
-        article {
-            margin: 0 auto 20px auto; /* Center articles */
-            text-align: left;
-            background-color: #333; /* Grey background for articles */
-            padding: 20px;
-            border-radius: 10px; /* Rounded corners for the grey boxes */
-            max-width: 800px; /* Limit max-width for articles */
-        }
+
         /* Footer styles */
         footer {
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #87CEFA;
-            max-width: 400px; /* Smaller box for footer */
-            margin: 20px auto; /* Center footer and add margin */
-        }
-        /* CTA styles */
-        .cta {
+            text-align: center;
             padding: 20px;
-            background-color: #333; /* Grey background for CTA */
-            border-radius: 10px; /* Rounded corners for the CTA box */
-            margin: 20px auto; /* Center CTA box */
-            max-width: 800px; /* Limit max-width for CTA box */
-        }
-        .cta a {
-            color: #87CEFA; /* Light blue color for CTA link */
-            text-decoration: none;
-            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #0F0;
         }
     </style>
 </head>
 <body>
 
-    <!-- Matrix effect canvas -->
+    <!-- Matrix Effect Canvas -->
     <canvas id="matrix"></canvas>
 
     <div class="content">
+        <!-- Your other content here -->
+    </div>
+
+    <!-- Matrix effect canvas -->
+    <canvas id="matrix"></canvas>
+    <div class="content">
         <header>
-            <h1>Welcome To My World - Cloud Threat Hunting</h1>
+            <h1>TITLE OF THIS WEBPAGE</h1>
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#main">Main</a></li>
                 </ul>
             </nav>
         </header>
 
-        <section id="home">
-            <div class="service">
-                <h2>Threat Detection</h2>
-                <p>Leverage our advanced threat detection services using AWS CloudTrail and GuardDuty to keep your cloud environment secure. Our solutions provide real-time monitoring and analysis to promptly identify and address potential threats. We utilize state-of-the-art techniques to ensure that your environment is protected against both known and emerging threats.</p>
-                <p>Our threat detection services include setting up and configuring AWS CloudTrail to capture API calls and AWS GuardDuty for intelligent threat detection. We offer detailed reports and actionable insights to help you understand and mitigate risks effectively.</p>
-            </div>
-            <div class="service">
-                <h2>Incident Response</h2>
-                <p>Our incident response services are designed to quickly address and mitigate security incidents. Utilizing AWS Lambda, we automate response actions to ensure a swift and effective resolution. Our approach minimizes downtime and reduces the impact of security incidents on your operations.</p>
-                <p>We provide a comprehensive incident response strategy that includes detection, analysis, containment, eradication, and recovery. Our team is skilled in handling various types of incidents, ensuring that your cloud environment remains resilient and secure.</p>
-            </div>
-            <div class="service">
-                <h2>Compliance Monitoring</h2>
-                <p>Ensure your cloud environment meets industry standards with our compliance monitoring services. We provide regular audits and detailed reporting to help you stay compliant with regulations. Our team helps you navigate the complexities of compliance requirements and ensures that your cloud setup adheres to the latest standards.</p>
-                <p>We utilize AWS tools to continuously monitor your environment for compliance, providing you with actionable insights and recommendations. Our approach helps you avoid potential penalties and maintain a secure and compliant infrastructure.</p>
-            </div>
-            <div class="service">
-                <h2>Vulnerability Management</h2>
-                <p>Identify and address vulnerabilities before they become threats. Our vulnerability management services include comprehensive scanning and risk assessment to protect your cloud infrastructure. We employ advanced tools to detect and analyze vulnerabilities, ensuring that you are protected against potential exploits.</p>
-                <p>Our services also include remediation strategies and follow-up assessments to ensure that vulnerabilities are effectively managed. We work closely with you to prioritize and address the most critical issues, enhancing the overall security of your cloud environment.</p>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <form action="https://formspree.io/f/xrbzvgbz" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                <button type="submit">Send</button>
-            </form>
+        <!-- Home section -->
+        <section id="home">
+            <h2>Home</h2>
+            <p>START US OFF WITH SUMN NICE, YA GET ME?</p>
         </section>
-
-        <footer>
-            <p>&copy; 2024 Welcome To My World</p>
-        </footer>
-    </div>
+        <section id="main">
+            <h2>Main</h2>
+            <div class="main-posts">
+                <div class="main-post">
+                    <p>Main Page</p>
+                </div>
+            </div>
+           </section>
 
     <!-- Matrix effect script -->
     <script>
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
-
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
         const fontSize = 16;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
-
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@##$%^&&*()+=?';
         const charArray = characters.split('');
-
         function draw() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#87CEFA'; // Light blue color
+            ctx.fillStyle = '#0F0';
             ctx.font = `${fontSize}px monospace`;
-
             for (let i = 0; i < drops.length; i++) {
                 const text = charArray[Math.floor(Math.random() * charArray.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
                 drops[i]++;
             }
         }
-
         setInterval(draw, 30);
-
         window.onresize = function () {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
