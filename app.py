@@ -5,6 +5,7 @@ import datetime
 import time
 from threading import Thread
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+import bcrypt
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Set a secure secret key
@@ -13,8 +14,8 @@ app.secret_key = 'your_secret_key'  # Set a secure secret key
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# Simulated database of users (use SQLAlchemy in a production environment)
-users = {'admin': {'password': 'adminpass'}}
+# Simulated database of users (use SQLAlchemy in a real-world application)
+users = {}
 
 # User class for Flask-Login
 class User(UserMixin):
@@ -28,7 +29,7 @@ def load_user(user_id):
         return User(user_id)
     return None
 
-# Simulated storage for scheduled patches (could be a DB in production)
+# Simulated storage for scheduled patches (could be a DB)
 scheduled_patches = []
 
 # Email sending function
@@ -52,6 +53,46 @@ def send_email(subject, recipient, body):
         print("Email sent successfully!")
     except Exception as e:
         print(f"Error sending email: {e}")
+
+# User registration route with password hashing and validation
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+
+    # Validate username and password length
+    if len(username) < 3 or len(password) < 6:
+        return jsonify({"message": "Username must be at least 3 characters and password must be at least 6 characters!"}), 400
+
+    # Check if username already exists
+    if username in users:
+        return jsonify({"message": "User already exists!"}), 400
+
+    # Hash the password before storing
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    users[username] = {'password': hashed_password}
+    return jsonify({"message": "User registered successfully!"})
+
+# User login route with password verification
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+
+    if username in users and bcrypt.checkpw(password.encode('utf-8'), users[username]['password']):
+        user = User(username)
+        login_user(user)
+        return jsonify({"message": "Login successful!"})
+    return jsonify({"message": "Invalid credentials!"}), 401
+
+# User logout route with feedback
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return jsonify({"message": "You have been logged out!"}), 200
 
 # Route to handle vulnerability scan and send email
 @app.route('/send-email', methods=['GET'])
@@ -102,26 +143,6 @@ def apply_patches():
                 scheduled_patches.remove(patch)
 
         time.sleep(60)  # Check every minute
-
-# User login route
-@app.route('/login', methods=['POST'])
-def login():
-    data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-
-    if username in users and users[username]['password'] == password:
-        user = User(username)
-        login_user(user)
-        return jsonify({"message": "Login successful!"})
-    return jsonify({"message": "Invalid credentials!"}), 401
-
-# User logout route
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('login'))
 
 # Protected dashboard route
 @app.route('/dashboard')
