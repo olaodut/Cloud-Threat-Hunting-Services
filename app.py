@@ -17,10 +17,14 @@ def send_email(subject, recipient, body):
     smtp_user = 'youremail@example.com'  # Replace with your email
     smtp_password = 'yourpassword'  # Replace with your email password
 
-    with smtplib.SMTP(smtp_server, smtp_port) as server:
-        server.starttls()  # Encrypt the connection
-        server.login(smtp_user, smtp_password)
-        server.sendmail(smtp_user, recipient, msg.as_string())
+    try:
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.starttls()  # Encrypt the connection
+            server.login(smtp_user, smtp_password)
+            server.sendmail(smtp_user, recipient, msg.as_string())
+        print("Email sent successfully!")
+    except Exception as e:
+        print(f"Error sending email: {e}")
 
 # Route to handle scan and send email
 @app.route('/send-email', methods=['GET'])
@@ -28,7 +32,7 @@ def scan_and_send_email():
     # Send an email when this route is accessed
     send_email(
         subject="VulnGuard Scan Initiated",
-        recipient="client@example.com",  # Replace with client's email
+        recipient="client@example.com",  # Replace with the recipient's email
         body="Your scan is in progress. You will receive a report shortly."
     )
     return jsonify({"message": "Email sent successfully!"})
