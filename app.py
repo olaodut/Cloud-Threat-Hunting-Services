@@ -7,13 +7,13 @@ from threading import Thread
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = 'your_secret_key'  # Set a secure secret key
 
 # Flask-Login setup
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# Simulate a database of users (use SQLAlchemy for real-world use)
+# Simulated database of users (use SQLAlchemy in a production environment)
 users = {'admin': {'password': 'adminpass'}}
 
 # User class for Flask-Login
@@ -28,7 +28,7 @@ def load_user(user_id):
         return User(user_id)
     return None
 
-# Simulated storage for scheduled patches (could be a DB)
+# Simulated storage for scheduled patches (could be a DB in production)
 scheduled_patches = []
 
 # Email sending function
@@ -53,7 +53,7 @@ def send_email(subject, recipient, body):
     except Exception as e:
         print(f"Error sending email: {e}")
 
-# Route to handle scan and send email
+# Route to handle vulnerability scan and send email
 @app.route('/send-email', methods=['GET'])
 @login_required
 def scan_and_send_email():
@@ -123,7 +123,7 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-# Protect a route (e.g., dashboard)
+# Protected dashboard route
 @app.route('/dashboard')
 @login_required
 def dashboard():
