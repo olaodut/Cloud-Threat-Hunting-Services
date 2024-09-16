@@ -6,13 +6,6 @@
     <title>VulnGuard - Automated Security</title>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
     <style>
-        .content {
-            position: relative;
-            z-index: 1;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
         /* General styles */
         body {
             margin: 0;
@@ -20,21 +13,14 @@
             background-color: black;
             color: white;
             font-family: 'PT Serif', serif;
-            position: relative;
             overflow: auto;
         }
 
         .container {
-            max-width: 400px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             text-align: center;
-        }
-
-        input[type="password"] {
-            padding: 10px;
-            width: 100%;
-            margin: 10px 0;
         }
 
         button {
@@ -60,14 +46,6 @@
             z-index: -1;
         }
 
-        /* Content container */
-        .content {
-            position: relative;
-            z-index: 1;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
         /* Header styles */
         header {
             text-align: center;
@@ -85,23 +63,18 @@
                 transform: rotateY(0deg);
             }
             to {
-                transform: rotateY(360deg); /* Use rotate for a 2D spin */
+                transform: rotateY(360deg);
             }
         }
 
-        /* Mobile specific adjustments */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            #matrix {
-                width: 100vw; /* Ensure the canvas covers the full viewport width */
-                height: 100vh; /* Ensure the canvas covers the full viewport height */
-            }
             header h1 {
-                font-size: 2em; /* Adjust font size for smaller screens */
-                animation: spin 15s linear infinite; /* Slower spin animation on mobile */
+                font-size: 2em;
+                animation: spin 15s linear infinite;
             }
         }
 
-        /* Navigation styles */
         nav ul {
             list-style-type: none;
             padding: 0;
@@ -118,18 +91,6 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 1.2em;
-            display: inline-block;
-            animation: fadeInOut 3s linear infinite;
-        }
-
-        /* Keyframes for fading in and out */
-        @keyframes fadeInOut {
-            0%, 100% {
-                opacity: 0.5;
-            }
-            50% {
-                opacity: 1;
-            }
         }
 
         /* Section styles */
@@ -139,7 +100,7 @@
             margin-bottom: 20px;
             text-align: center;
         }
-        
+
         /* Contact form */
         form {
             margin-top: 20px;
@@ -192,6 +153,25 @@
             <div class="result" id="scan-result"></div>
         </section>
 
+        <!-- Patch Management section -->
+        <section id="patch-management">
+            <h2>Patch Management</h2>
+            <p>Schedule your next patch management service:</p>
+            <form id="schedule-patch-form">
+                <label for="patch-time">Choose a patch time (YYYY-MM-DD HH:MM:SS):</label>
+                <input type="text" id="patch-time" name="patch-time" placeholder="2024-09-16 18:30:00" required><br><br>
+
+                <label for="client-name">Your Name:</label>
+                <input type="text" id="client-name" name="client-name" required><br><br>
+
+                <label for="client-email">Your Email:</label>
+                <input type="email" id="client-email" name="client-email" required><br><br>
+
+                <button type="submit">Schedule Patch</button>
+                <div class="result" id="patch-result"></div>
+            </form>
+        </section>
+
         <!-- Contact section -->
         <section id="contact">
             <h2>Contact Us</h2>
@@ -235,12 +215,48 @@
             canvas.height = window.innerHeight;
         };
 
-        // Run scan button functionality (for now just updates text)
+        // Run scan button functionality
         document.getElementById('run-scan').addEventListener('click', function() {
             document.getElementById('scan-result').innerHTML = 'Scan in progress...';
-            fetch('/send-email')  // This would trigger the email sending endpoint
+            fetch('/send-email')
                 .then(response => response.json())
-                .then(data => console.log('Email sent'));
+                .then(data => {
+                    if (data.message === "Email sent successfully!") {
+                        document.getElementById('scan-result').innerHTML = 'Email sent successfully!';
+                    } else {
+                        document.getElementById('scan-result').innerHTML = 'Error sending email.';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('scan-result').innerHTML = 'Error sending email.';
+                });
+        });
+
+        // Schedule patch functionality
+        document.getElementById('schedule-patch-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const patchTime = document.getElementById('patch-time').value;
+            const clientName = document.getElementById('client-name').value;
+            const clientEmail = document.getElementById('client-email').value;
+
+            fetch('/schedule-patch', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    patch_time: patchTime,
+                    client: clientName,
+                    email: clientEmail
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('patch-result').innerHTML = data.message;
+            })
+            .catch(error => {
+                document.getElementById('patch-result').innerHTML = 'Error scheduling patch.';
+            });
         });
     </script>
 </body>
